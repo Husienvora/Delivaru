@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Buffer } from "buffer";
+import "./index.css";
 import { useGlobalContext } from "./context.js";
 function Image() {
   const { getImage, data, UploadImage, DeleteImages } = useGlobalContext();
@@ -24,10 +25,13 @@ function Image() {
     //     return res.data;
     //   });
 
-    await UploadImage(new Date().getDate(), formData);
+    await UploadImage(
+      new Date().getMinutes() + new Date().getMinutes(),
+      formData
+    );
     setRefresh(!Refresh);
 
-    // window.location.reload();
+    window.location.reload();
   };
   useEffect(() => {
     getImage();
@@ -40,16 +44,18 @@ function Image() {
         // const base64String = Buffer.from(singleData.img.data.data, "base64");
 
         return (
-          <div>
+          <div key={singleData._id} className="Imagecard">
             <img
+              className="image"
               src={`data:${singleData.contentType};base64, ${Buffer.from(
                 singleData.img.data.data
               ).toString("base64")}`}
               width="300"
             />
             <button
+              className="imgbutton"
               onClick={async () => {
-                await DeleteImages(singleData.id);
+                await DeleteImages(singleData._id);
                 setRefresh(!Refresh);
               }}
             >

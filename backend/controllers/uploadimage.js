@@ -14,6 +14,7 @@ const upload = multer({ storage: storage }).single("testImage");
 
 const uploadImage = async (req, res) => {
   upload(req, res, (err) => {
+    console.log(req.body.id);
     if (err) {
       console.log(err);
     } else {

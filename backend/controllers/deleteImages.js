@@ -3,7 +3,7 @@ const { createCustomError } = require("../errors/custom-error");
 const deleteImages = async (req, res) => {
   const { id } = req.body;
 
-  const Image = await imageModel.findOneAndDelete({ id: id });
+  const Image = await imageModel.findOneAndDelete({ _id: id });
   if (!Image) {
     return next(createCustomError(`No Image with id : ${taskID}`, 404));
   }

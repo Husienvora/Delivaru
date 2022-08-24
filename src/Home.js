@@ -4,8 +4,8 @@ import Task from "./task";
 function Home() {
   return (
     <>
-      <Image />
       <Task />
+      <Image />
     </>
   );
 }

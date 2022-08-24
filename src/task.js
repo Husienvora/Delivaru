@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { useGlobalContext } from "./context.js";
+import "./index.css";
 function Task() {
   const [Currtask, setCurrtask] = useState("");
   const [Upadting, setUpdating] = useState(false);
@@ -25,9 +26,9 @@ function Task() {
   };
   return (
     <>
-      <div>
-        <form className="task-form" onSubmit={handleSubmit}>
-          <h3>Task Manager</h3>
+      <div className="Taskdiv">
+        <form className="task-form " onSubmit={handleSubmit}>
+          <h1 style={{ justifyContent: "center" }}>Task Manager</h1>
           <div className="form-control">
             <input
               type="text"
@@ -36,7 +37,7 @@ function Task() {
               value={Currtask}
               onChange={(e) => setCurrtask(e.target.value)}
             />
-            <button type="submit" className="submit-btn">
+            <button type="submit" className="submit-btn ">
               Create
             </button>
           </div>
@@ -50,17 +51,24 @@ function Task() {
                 //   <div>{String(task.completed)}</div>
                 // </>
                 <>
-                  <table>
-                    <tr>
-                      <td>{task.name}</td>
-                      <td>{String(task.completed)}</td>
+                  <div className="tasktable ">
+                    <div className="taskName">Name:{task.name}</div>
+                    <div className="taskstatus">
+                      Completed:{String(task.completed)}
+                    </div>
+                  </div>
+                  {/* <table>
+                    <tr className="tablerow">
+                      <td></td>
+                      <td></td>
                     </tr>
-                  </table>
+                  </table> */}
                   <button
                     onClick={async () => {
                       await deleteTask(task._id);
                       setRefresh(!Refresh);
                     }}
+                    className="delete-btn"
                   >
                     Delete
                   </button>
@@ -69,6 +77,7 @@ function Task() {
                       setUpdating(true);
                       setUpdateID(task._id);
                     }}
+                    className="update-btn"
                   >
                     Update
                   </button>
@@ -79,7 +88,7 @@ function Task() {
             <div></div>
           )}
           {Upadting ? (
-            <div>
+            <div className="updateform">
               <form className="task-form" onSubmit={Updatetask}>
                 <div className="form-control">
                   <input
