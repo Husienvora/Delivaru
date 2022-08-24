@@ -5,11 +5,13 @@ const AppProvider = ({ children }) => {
   const [Tasks, setTasks] = useState();
   const [data, setData] = useState([]);
 
-  const BaseUrl = "http://localhost:5000/api/v1";
+  const BaseUrl = "https://husien-crud-api.herokuapp.com/api/v1";
 
   useEffect(() => {
-    getImage();
-    getAllTask();
+    if (!Tasks || !data) {
+      getImage();
+      getAllTask();
+    }
   }, []);
 
   const getImage = async () => {
@@ -56,7 +58,6 @@ const AppProvider = ({ children }) => {
   };
   const createTask = async (name) => {
     try {
-      console.log(name);
       await axios
         .post(BaseUrl + "/task", {
           name: name,
@@ -68,6 +69,7 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+    window.location.reload();
   };
 
   const UpdateTask = async (id, name, completed) => {
@@ -83,6 +85,7 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+    window.location.reload();
   };
 
   const deleteTask = async (id) => {
@@ -93,6 +96,7 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+    window.location.reload();
   };
 
   return (

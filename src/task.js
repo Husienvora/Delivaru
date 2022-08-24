@@ -18,16 +18,25 @@ function Task() {
   }, [Refresh]);
 
   const button = useRef();
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     createTask(Currtask);
+
+    e.preventDefault();
   };
-  const Updatetask = () => {
+  const Updatetask = (e) => {
     UpdateTask(UpdateID, Updatedoc.name, Updatedoc.completed);
+
+    e.preventDefault();
   };
   return (
     <>
       <div className="Taskdiv">
-        <form className="task-form " onSubmit={handleSubmit}>
+        <form
+          className="task-form "
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
           <h1 style={{ justifyContent: "center" }}>Task Manager</h1>
           <div className="form-control">
             <input
@@ -64,9 +73,8 @@ function Task() {
                     </tr>
                   </table> */}
                   <button
-                    onClick={async () => {
-                      await deleteTask(task._id);
-                      setRefresh(!Refresh);
+                    onClick={() => {
+                      deleteTask(task._id);
                     }}
                     className="delete-btn"
                   >
@@ -89,7 +97,12 @@ function Task() {
           )}
           {Upadting ? (
             <div className="updateform">
-              <form className="task-form" onSubmit={Updatetask}>
+              <form
+                className="task-form"
+                onSubmit={(e) => {
+                  Updatetask(e);
+                }}
+              >
                 <div className="form-control">
                   <input
                     type="text"
