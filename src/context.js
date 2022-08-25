@@ -5,7 +5,7 @@ const AppProvider = ({ children }) => {
   const [Tasks, setTasks] = useState();
   const [data, setData] = useState([]);
 
-  const BaseUrl = "https://husien-crud-api.herokuapp.com/api/v1";
+  const BaseUrl = "http://localhost:5000/api/v1";
 
   useEffect(() => {
     if (!Tasks || !data) {

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useGlobalContext } from "./context.js";
 import "./index.css";
 function Task() {
@@ -11,7 +11,7 @@ function Task() {
   const [UpdateID, setUpdateID] = useState();
   const { getAllTask, createTask, UpdateTask, deleteTask, Tasks } =
     useGlobalContext();
-  const [CurrStatus, setCurrStatus] = useState();
+
   const [Refresh, setRefresh] = useState(false);
   useEffect(() => {
     getAllTask();

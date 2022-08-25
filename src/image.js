@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Buffer } from "buffer";
 import "./index.css";
 import { useGlobalContext } from "./context.js";
@@ -35,7 +35,7 @@ function Image() {
   };
   useEffect(() => {
     getImage();
-  }, [Refresh]);
+  }, [Refresh, getImage]);
 
   return (
     <div className="App">
